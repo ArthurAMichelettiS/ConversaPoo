@@ -5,15 +5,15 @@ import java.util.*;
 
 public class Pessoa {
 
-    public Pessoa(String nome){
-        this(nome, "neutro", "uma pessoa");
-    }
-
     public Pessoa(String nome, String sentimento, String ocupacao){
         this.nome = nome;
         this.sentimento = sentimento;
         this.ocupacao = ocupacao;
         gostos = new ArrayList<String>();
+    }
+
+    public Pessoa(String nome){
+        this(nome, "neutro", "uma pessoa");
     }
 
     private String nome;
@@ -24,29 +24,43 @@ public class Pessoa {
     private boolean enfaseFala = false;
     //list dos proximos topicos, metodos conversa
 
+    /** @param frase fala a ser dita com a enfase e a velocidade desta pessoa
+     *
+     */
     protected void Fala(String frase){
         PrintExpressivo.Print(frase, enfaseFala,
                 velocidadeFala.getTempoEntreLetras());
     }
 
+
     public void seApresentar(){
         StringBuilder textoApresenta = new StringBuilder(this.nome +
                 ": Eu sou " + this.ocupacao);
 
-        if (gostos.size()!=0)
-            textoApresenta.append(" e gosto de ");
-
-        int i;
-        for (i=0; i < gostos.size()-2; i++) {
-            textoApresenta.append(gostos.get(i)).append(", ");
-        }
-        if(gostos.size()>1)
-            textoApresenta.append(gostos.get(i)).append(" e ").append(gostos.get(i+1));
-        else if (gostos.size()==1)
-            textoApresenta.append(gostos.get(0));
+        textoApresenta.append(GeraFalaGostos());
 
         textoApresenta.append(" (Diz sentindo ").append(this.sentimento).append(").");
         Fala(textoApresenta.toString());
+    }
+
+    /** @return A string a ser dita para os gostos
+     *
+     * */
+    private String GeraFalaGostos(){
+        StringBuilder falaGostos = new StringBuilder();
+        if (gostos.size()!=0)
+            falaGostos.append(" e gosto de ");
+
+        int i;
+        for (i=0; i < gostos.size()-2; i++) {
+            falaGostos.append(gostos.get(i)).append(", ");
+        }
+        if(gostos.size()>1)
+            falaGostos.append(gostos.get(i)).append(" e ").append(gostos.get(i+1));
+        else if (gostos.size()==1)
+            falaGostos.append(gostos.get(0));
+
+        return falaGostos.toString();
     }
 
     public void Saudacao(Pessoa outraPessoa){

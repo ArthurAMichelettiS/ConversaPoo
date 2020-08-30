@@ -13,6 +13,10 @@ public enum VelocidadesDeFala {
         this.tempoEntreLetras = tempoEntreLetras;
     }
 
+    /**
+    * @return Retorna o tempo em milisegundos entre a fala de cada letra
+     *
+    */
     public int getTempoEntreLetras() {
         return tempoEntreLetras;
     }

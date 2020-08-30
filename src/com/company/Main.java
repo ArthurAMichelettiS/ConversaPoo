@@ -24,10 +24,10 @@ public class Main {
         jonas.setRa("081181245");
         jonas.setVelocidadeFala(VelocidadesDeFala.MTO_RAPIDO);
 
+        
         arth.Saudacao(agata);
         arth.seApresentar();
         agata.seApresentar();
-
 
 
         System.out.println();
